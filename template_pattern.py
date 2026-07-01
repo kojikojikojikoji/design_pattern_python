@@ -1,5 +1,5 @@
-from abc import ABC, ABCMeta, abstractmethod
-from typing_extensions import final
+from abc import ABCMeta, abstractmethod
+from typing import final
 import sys
 
 

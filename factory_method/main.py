@@ -1,17 +1,33 @@
-from idcard.id_card import IDCard
-from idcard.id_card_factory import IDCardFactory
-from framework.factory import Factory
-from framework.product import Product
+"""Demo client for the Factory Method pattern.
 
-def main():
-    # pass
-    factory = IDCardFactory()
-    card1 = factory.create("人1")
-    card2 = factory.create("人2")
-    card3 = factory.create("人3")
-    card1.use()
-    card2.use()
-    card3.use()
-    
-if __name__ == '__main__':
+Run from the repository root:
+
+    python -m factory_method.main
+
+The point to notice: this client works with the abstract ``Factory`` and
+``Product`` types. Swap ``IDCardFactory`` for any other concrete factory
+and the rest of the code keeps working unchanged.
+"""
+
+from .framework.factory import Factory
+from .framework.product import Product
+from .idcard.id_card_factory import IDCardFactory
+
+
+def main() -> None:
+    # The only line that mentions a concrete class. Everything below it
+    # depends solely on the abstract Factory / Product interfaces.
+    factory: Factory = IDCardFactory()
+
+    cards: list[Product] = [
+        factory.create("Alice"),
+        factory.create("Bob"),
+        factory.create("Charlie"),
+    ]
+
+    for card in cards:
+        card.use()
+
+
+if __name__ == "__main__":
     main()
