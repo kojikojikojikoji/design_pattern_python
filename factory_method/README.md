@@ -126,7 +126,7 @@ class Factory(ABC):
 
 `create()` is a **template method**: it locks in the procedure (create → register → return) and delegates the individual steps to abstract hooks. It's marked `@final` so subclasses can change *what* happens in each step but never *skip or reorder* the steps. This is how "every card is always registered" becomes a guarantee instead of a convention.
 
-> 💡 The Factory Method pattern is essentially the **Template Method pattern applied to object creation** — compare with [`template_pattern.py`](../template_pattern.py) in this repository.
+> 💡 The Factory Method pattern is essentially the **Template Method pattern applied to object creation** — compare with the [Template Method tutorial](../template_method/) in this repository.
 
 ### Step 3 — the concrete Product ([idcard/id_card.py](idcard/id_card.py))
 
@@ -225,10 +225,10 @@ The common thread: the caller wants to **use** an object with a known interface 
 
 ## 9. Related patterns
 
-- **Template Method** — `Factory.create()` *is* a template method; Factory Method is that idea specialised for creation. See [`../template_pattern.py`](../template_pattern.py).
-- **Abstract Factory** — creates whole *families* of related products (e.g. button + checkbox + menu for one OS). Often implemented using multiple factory methods.
-- **Singleton** — concrete factories frequently exist as a single shared instance.
-- **Builder** — also isolates construction, but focuses on assembling one complex object step by step, rather than choosing which class to instantiate.
+- **Template Method** — `Factory.create()` *is* a template method; Factory Method is that idea specialised for creation. See [`../template_method/`](../template_method/).
+- **Abstract Factory** — creates whole *families* of related products (e.g. button + checkbox + menu for one OS). Often implemented using multiple factory methods. See [`../abstract_factory/`](../abstract_factory/).
+- **Singleton** — concrete factories frequently exist as a single shared instance. See [`../singleton/`](../singleton/).
+- **Builder** — also isolates construction, but focuses on assembling one complex object step by step, rather than choosing which class to instantiate. See [`../builder/`](../builder/).
 
 ## 10. Exercises
 

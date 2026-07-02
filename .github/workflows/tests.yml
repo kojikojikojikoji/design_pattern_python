@@ -1,0 +1,29 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run all pattern demos
+        run: |
+          for d in */; do
+            d="${d%/}"
+            if [ -f "$d/main.py" ]; then
+              echo "== python -m $d.main =="
+              python -m "$d.main" > /dev/null
+            fi
+          done
+      - name: Run the full test suite
+        run: python -m unittest discover -s . -t .
